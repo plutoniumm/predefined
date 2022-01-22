@@ -1,4 +1,10 @@
 # predefined
-A library for common functions of JS predefined
+A client side library for common functions of JS predefined
 
-(DONT USE IN DEVELOPMENT)
+## Data Manipulation
+
+## Data Type Manipulation
+
+## DOM Manipulation
+
+## Individual Functions

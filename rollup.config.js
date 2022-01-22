@@ -1,20 +1,19 @@
 import { terser } from "rollup-plugin-terser";
-import pkg from './package.json';
+import resolve from '@rollup/plugin-node-resolve';
+// import json from '@rollup/plugin-json';
 
-export default {
+const config = {
     input: 'src/index.js',
     plugins: [
+        resolve(),
         terser(),
+        // json()
     ],
-    output: [
-        {
-            name: 'predefined',
-            file: pkg.browser,
-            format: 'umd',
-        },
-        {
-            file: pkg.module,
-            format: 'es'
-        },
-    ],
+    output: {
+        name: 'predefined',
+        file: "index.js",
+        format: 'iife',
+    }
 };
+
+export default config;
