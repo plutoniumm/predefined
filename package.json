@@ -1,0 +1,24 @@
+{
+  "name": "predefined",
+  "version": "1.0.0",
+  "description": "A Predefined functions library",
+  "main": "index.js",
+  "scripts": {
+    "git": "sh ./scripts/git.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plutoniumm/predefined.git"
+  },
+  "keywords": [
+    "Predefined",
+    "Lodash",
+    "SpeedUp"
+  ],
+  "author": "Plutoniumm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/plutoniumm/predefined/issues"
+  },
+  "homepage": "https://github.com/plutoniumm/predefined#readme"
+}
