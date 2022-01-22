@@ -4,5 +4,5 @@ echo "Enter Message";
 read msg;
 git commit -m "$msg";
 
-git pull;
+# git pull;
 git push;
