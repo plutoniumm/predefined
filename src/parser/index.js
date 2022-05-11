@@ -21,3 +21,8 @@ export const HTML2String = str => str.replace(
         '&quot;': '"'
     }[ tag ] || tag )
 );
+
+export default parser = {
+    String2HTML,
+    HTML2String
+}

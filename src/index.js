@@ -1,29 +1,23 @@
-import { hash, xor, uuid } from "./singles/crypto";
-import { String2HTML, HTML2String } from "./types/index";
-import { copyToClipboard, parseCookie } from "./data/index";
-import { get_url_params, set_url_params, onClickOutside } from "./web/index";
+import dom from './dom';
+import storage from './storage';
+import math from './math';
+import parser from './parser';
+import std from './std';
 
-const F = ( x ) => document.querySelector( x );
+import PromiseWorker from './functions/worker';
+import F from './functions/bigF';
+
 const FA = ( x ) => [ ...document.querySelectorAll( x ) ];
 
 module.exports = {
+    PromiseWorker,
+    // External
+    dom,
+    storage,
+    math,
+    parser,
+    std,
     // Here
     F,
-    FA,
-    // Crypto
-    hash,
-    xor,
-    uuid,
-    // Types
-    String2HTML,
-    HTML2String,
-    // Data
-    copyToClipboard,
-    parseCookie,
-    // Web
-    url_params: {
-        get: get_url_params,
-        set: set_url_params
-    },
-    onClickOutside
+    FA
 }

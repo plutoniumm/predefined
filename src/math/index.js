@@ -22,3 +22,29 @@ export const hash = val => crypto.subtle.digest( 'SHA-256', new TextEncoder( 'ut
             hexes.push( ( '00000000' + view.getUint32( i ).toString( 16 ) ).slice( -8 ) );
         return hexes.join( '' );
     } );
+
+export function range ( start, end, step = 1 ) {
+    return {
+        [ Symbol.iterator ] () {
+            return this;
+        },
+        next () {
+            if ( start < end ) {
+                start += step;
+                return { value: start, done: false };
+            }
+            return { done: true, value: end };
+        }
+    };
+};
+// USAGE
+// for ( const n of range( 0, 20, 5 ) ) {
+//     console.log( n ); // 5, 10, 15, 20
+// };
+
+export default math = {
+    uuid,
+    xor,
+    hash,
+    range
+};

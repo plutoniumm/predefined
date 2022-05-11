@@ -1,11 +1,14 @@
 {
     "name": "predefined",
-    "version": "1.0.3",
+    "version": "1.2.0",
+    "type": "module",
     "description": "A Predefined functions library",
-    "main": "dist/index.js",
+    "main": "index.js",
     "scripts": {
         "build": "node ./scripts/build.js",
-        "git": "sh ./scripts/git.sh"
+        "git": "sh ./scripts/git.sh",
+        "predeploy": "npm run build",
+        "deploy": "npm publish"
     },
     "repository": {
         "type": "git",
@@ -21,12 +24,15 @@
     "bugs": {
         "url": "https://github.com/plutoniumm/predefined/issues"
     },
-    "homepage": "https://github.com/plutoniumm/predefined#readme",
+    "homepage": "https://plutoniumm.github.io/predefined/",
     "devDependencies": {
         "@rollup/plugin-json": "^4.1.0",
         "@rollup/plugin-node-resolve": "^13.1.3",
         "readline-sync": "^1.4.10",
         "rollup": "^2.66.0",
         "rollup-plugin-terser": "^7.0.2"
+    },
+    "dependencies": {
+        "chalk": "^5.0.1"
     }
 }

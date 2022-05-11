@@ -1,29 +1,4 @@
-const time = {
-    since: function ( val ) {
-        val = 0 | ( Date.now() - new Date( val ) ) / 1000;
-
-        let //
-            unit,
-            length = {
-                second: 60,
-                minute: 60,
-                hour: 24,
-                day: 7,
-                week: 4.35,
-                month: 12,
-                year: 10000
-            },
-            result;
-
-        for ( unit in length ) {
-            result = val % length[ unit ];
-            if ( !( val = 0 | val / length[ unit ] ) )
-                return result + ' ' + ( result - 1 ? unit + 's' : unit );
-        };
-    }
-};
-
-const thread = fn => {
+export const thread = fn => {
     const worker = new Worker(
         URL.createObjectURL(
             new Blob( [ `postMessage((${ fn })());` ] ),
@@ -40,8 +15,7 @@ const thread = fn => {
     } );
 };
 
-const truthy = condition => condition ? true : false;
-
+export const delay = ( ms ) => new Promise( resolve => setTimeout( resolve, ms ) );
 
 export const debounce = function ( func, wait, immediate ) {
     let timeout;
@@ -57,4 +31,11 @@ export const debounce = function ( func, wait, immediate ) {
         timeout = setTimeout( later, wait );
         if ( callNow ) func.apply( context, args );
     };
+};
+
+
+export default std = {
+    thread,
+    debounce,
+    delay
 };
