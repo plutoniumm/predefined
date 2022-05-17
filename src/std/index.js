@@ -32,10 +32,3 @@ export const debounce = function ( func, wait, immediate ) {
         if ( callNow ) func.apply( context, args );
     };
 };
-
-
-export default std = {
-    thread,
-    debounce,
-    delay
-};

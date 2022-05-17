@@ -1,13 +1,41 @@
-import dom from './dom';
-import storage from './storage';
-import math from './math';
-import parser from './parser';
-import std from './std';
+import { onClickOutside } from './dom';
+import { parseCookie, copyToClipboard, URLParams } from './storage';
+import { uuid, xor, hash, range } from './math';
+import { String2HTML, HTML2String } from './parser';
+import { thread, debounce, delay } from './std';
 
 import PromiseWorker from './functions/worker';
 import F from './functions/bigF';
 
 const FA = ( x ) => [ ...document.querySelectorAll( x ) ];
+
+const dom = {
+    onClickOutside
+};
+
+const storage = {
+    parseCookie,
+    copyToClipboard,
+    URLParams
+};
+
+const math = {
+    uuid,
+    xor,
+    hash,
+    range
+};
+
+const parser = {
+    String2HTML,
+    HTML2String
+};
+
+const std = {
+    thread,
+    debounce,
+    delay
+};
 
 module.exports = {
     PromiseWorker,

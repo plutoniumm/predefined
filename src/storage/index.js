@@ -1,19 +1,14 @@
-export class URLParams {
-    constructor ( url ) {
-        this.url = url || window.location.search;
-        this.paramsObj = new URLparamsObj( this.url );
-    }
-    get () {
-        const entries = this.paramsObj.entries();
+export const URLParams = {
+    get ( url = window.location.search ) {
+        const entries = new URLSearchParams( url ).entries();
         const params = {};
-        for ( let entry of entries )
-            params[ entry[ 0 ] ] = entry[ 1 ];
+        for ( let entry of entries ) params[ entry[ 0 ] ] = entry[ 1 ];
         return params;
-    }
+    },
     set ( key, value ) {
-        this.paramsObj.set( key, value );
-        const { protocol, host, pathname } = window.location;
-        const newURL = `${ protocol }//${ host }${ pathname }?${ this.paramsObj.toString() }`;
+        let searchParams = new URLSearchParams( window.location.search );
+        searchParams.set( key, value );
+        let newURL = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + searchParams.toString();
         window.history.pushState( { path: newURL }, '', newURL );
     }
 };
@@ -45,10 +40,3 @@ export const copyToClipboard = str => {
         document.getSelection().addRange( selected );
     }
 };
-
-export default storage = {
-    parseCookie,
-    copyToClipboard,
-    URLParams
-    // add ls-string to localStorage
-}

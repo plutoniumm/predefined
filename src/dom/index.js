@@ -3,18 +3,3 @@ export const onClickOutside = ( element, callback ) => {
         if ( !element.contains( e.target ) ) callback();
     } );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-export default dom = {
-    onClickOutside
-}

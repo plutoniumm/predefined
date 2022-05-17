@@ -1,9 +1,9 @@
-import chalk from 'chalk';
-import readlineSync from "readline-sync";
-import fs from 'fs';
+const fs = require( 'fs' );
+const readlineSync = require( 'readline-sync' );
+const { execSync } = require( 'child_process' );
 
-import pkg from '../package.json' assert {type: "json"};
-import { execSync } from "child_process";
+const pkg = require( '../package.json' );
+const chalk = require( "chalk" );
 
 const ver = readlineSync.question( `New Package Version: (Current: ${ pkg.version }) ` );
 pkg.version = ver;
@@ -12,4 +12,4 @@ fs.writeFileSync( './package.json', JSON.stringify( pkg, null, 4 ) );
 console.log( `Updated package.json to ${ pkg.version }` );
 
 execSync( `rollup -c` );
-console.log( chalk.green( `Rolled up Successfully!` ) );
+console.log( chalk.blue( `Rolled up Successfully!` ) );

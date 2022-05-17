@@ -41,10 +41,3 @@ export function range ( start, end, step = 1 ) {
 // for ( const n of range( 0, 20, 5 ) ) {
 //     console.log( n ); // 5, 10, 15, 20
 // };
-
-export default math = {
-    uuid,
-    xor,
-    hash,
-    range
-};
