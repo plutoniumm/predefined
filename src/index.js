@@ -7,12 +7,6 @@ import { thread, debounce, delay } from './std';
 import PromiseWorker from './functions/worker';
 import F from './functions/bigF';
 
-const FA = ( x ) => [ ...document.querySelectorAll( x ) ];
-
-const dom = {
-    onClickOutside
-};
-
 const storage = {
     parseCookie,
     copyToClipboard,
@@ -46,6 +40,5 @@ module.exports = {
     parser,
     std,
     // Here
-    F,
-    FA
+    F
 }

@@ -20,7 +20,7 @@ const func = ( () => {
             return src.sel();
 
 
-        throw TypeError( `Expected string | HTMLElement | Array: got ${ typeof src }` );
+        throw TypeError( `Expected string | HTMLElement | Array | Predefined: got ${ typeof src }` );
     }
 
     const F = function ( ...src ) {
@@ -42,6 +42,7 @@ const func = ( () => {
             parent: function () { iter( ( e, i ) => { sel[ i ] = e.parentNode } ); return this },
             remove: function () { iter( i => i.remove() ); return this },
             sel: () => sel,
+            unwrap: () => { return this[ 0 ] },
 
             isPredefined: true
         }

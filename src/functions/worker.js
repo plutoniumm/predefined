@@ -1,24 +1,19 @@
 'use strict'
 
+// DOES NOT SUPPORT CHROME <51, it didn't have postMessage;
 let messageIds = 0
 
 function onMessage ( self, e ) {
     let message = e.data
-    if ( !Array.isArray( message ) || message.length < 2 ) {
-        // Ignore - this message is not for us.
-        return;
-    }
-    let messageId = message[ 0 ];
-    let error = message[ 1 ];
-    let result = message[ 2 ];
+    if ( !Array.isArray( message ) || message.length < 2 )
+        return; // Ignore - this message is not for us.
+
+    let [ messageId, error, result ] = message;
 
     let callback = self._callbacks[ messageId ];
 
-    if ( !callback ) {
-        // Ignore - user might have created multiple PromiseWorkers.
-        // This message is not for us.
-        return;
-    }
+    if ( !callback )
+        return; // Ignore - user might have created multiple PromiseWorkers.
 
     delete self._callbacks[ messageId ];
     callback( error, result );
@@ -29,9 +24,7 @@ function PromiseWorker ( worker ) {
     self._worker = worker;
     self._callbacks = {};
 
-    worker.addEventListener( 'message', function ( e ) {
-        onMessage( self, e );
-    } );
+    worker.addEventListener( 'message', ( e ) => onMessage( self, e ) );
 };
 
 PromiseWorker.prototype.postMessage = function ( userMessage ) {
@@ -42,25 +35,13 @@ PromiseWorker.prototype.postMessage = function ( userMessage ) {
 
     return new Promise( function ( resolve, reject ) {
         self._callbacks[ messageId ] = function ( error, result ) {
-            if ( error ) {
+            if ( error )
                 return reject( new Error( error.message ) );
-            };
+
             resolve( result );
         };
 
-        /* istanbul ignore if */
-        if ( typeof self._worker.controller !== 'undefined' ) {
-            // service worker, use MessageChannels because e.source is broken in Chrome < 51:
-            // https://bugs.chromium.org/p/chromium/issues/detail?id=543198
-            let channel = new MessageChannel();
-            channel.port1.onmessage = function ( e ) {
-                onMessage( self, e );
-            };
-            self._worker.controller.postMessage( messageToSend, [ channel.port2 ] );
-        } else {
-            // web worker
-            self._worker.postMessage( messageToSend );
-        };
+        self._worker.postMessage( messageToSend ); // web worker
     } );
 };
 
